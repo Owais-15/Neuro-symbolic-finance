@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+.vscode/
+
+# System
+*.log
+.DS_Store
+
+# IDE
+.idea/
+
+# Keep Results
+!results/*.csv
+!results/*.png
