@@ -47,19 +47,16 @@ These results are validated through rigorous out-of-sample testing.
 
 ## Results
 
-### Out-of-Sample Performance
+## 📊 Key Performance Metrics
 
-| Set | N | Correlation (r) | P-value | R² |
-|-----|---|----------------|---------|-----|
-| **Validation** | 40 | **0.5602** | 0.0002 | 0.314 |
-| **Test** | 41 | **0.6216** | <0.0001 | 0.386 |
-| **Average** | - | **0.5909** | <0.0001 | 0.349 |
+| Metric | Value | Baseline (S&P 500) | Notes |
+|--------|-------|--------------------|-------|
+| **Correlation (r)** | **0.25** | 0.00 | **Strict Temporal Validation** (95% CI: [0.16, 0.33]) |
+| **Cross-Validation R²** | **0.06** | 0.00 | Statistically significant ($p < 10^{-7}$) |
+| **Sharpe Ratio** | **0.88** | 0.65 | Risk-adjusted return |
+| **Alpha** | **+180%** | 0% | Excess return vs Market |
 
-**Interpretation:**
-- ✅ Highly significant (p<0.001)
-- ✅ Consistent across both validation and test
-- ✅ r=0.59 is strong for stock prediction (top quartile of published research)
-- ✅ Explains 35% of variance (very good)
+> **Note on Academic Rigor**: Previous iterations reported $r=0.62$. A strict temporal audit revealed this included hindsight bias. After isolating past features from future returns, the **true correlations is 0.25**. This remains highly significant compared to linear baselines ($r \approx 0$).
 
 ### Portfolio Performance (Test Set)
 
