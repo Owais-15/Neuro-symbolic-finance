@@ -12,3 +12,4 @@ yfinance
 lxml
 matplotlib
 seaborn
+python-dotenv

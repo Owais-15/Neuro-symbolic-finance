@@ -1,0 +1,4 @@
+Component,Features,Correlation,P-value,Explainability
+Symbolic Only,Trust Score (7 rules),0.19359137800444215,0.03992711999115643,100%
+ML Only,9 features (no Trust Score),0.5481997113670943,3.279116567854446e-10,Partial (feature importance)
+Full System,10 features (with Trust Score),0.5295868552694143,1.627323687336825e-09,100% (rules + feature importance)

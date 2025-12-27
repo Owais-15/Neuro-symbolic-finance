@@ -1,17 +1,48 @@
 # Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 venv/
+env/
 .env
+.env.local
+.env.*.local
+
+# API Keys & Secrets
+*.key
+*.pem
+*secret*
+*password*
+credentials.json
+
+# IDE
 .vscode/
+.idea/
+*.swp
+*.swo
 
 # System
 *.log
 .DS_Store
+Thumbs.db
 
-# IDE
-.idea/
+# Temporary files
+*.tmp
+*.bak
+*.swp
+~*
 
-# Keep Results
-!results/*.csv
-!results/*.png
+# Model files (optional - uncomment if models are too large)
+# models/*.pkl
+# models/*.h5
+
+# Large datasets (optional - uncomment if datasets are too large)
+# results/datasets/*.csv
+
+# Keep important results
+!results/metrics/*.csv
+!results/charts/*.png
+
+# Git
+.git/
