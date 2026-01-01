@@ -31,6 +31,23 @@ A hybrid AI system combining **Machine Learning (XGBoost)** with **Symbolic Reas
 
 ---
 
+### 3. Interpretability (Rule Frequency)
+Which logic drives the "Safety Catch"? (N=20 Sample Audit)
+| Rule | Pass Rate | Role |
+| :--- | :--- | :--- |
+| **Liquidity** | 100% | Baseline Filter |
+| **Solvency** | 90% | Debt Defense |
+| **Valuation** | 75% | **Key Discriminator** (Filters "Hype") |
+| **Profitability**| 70% | **Primary Filter** (Filters "Junk") |
+
+### 4. Variance Explanation
+Our rigorous analysis shows high standard deviation (72%). Why?
+1.  **Regime Conflict**: The Neuro-Symbolic model often rejects high-performing "Growth" stocks if they fail "Valuation" rules (e.g., Tech rallies).
+2.  **Safety Cost**: By avoiding volatility (via Solvency rules), the model misses out on parabolic speculative runs, leading to underperformance in "FOMO" markets but protection in crashes.
+3.  **Feature Instability**: Volatility features introduce noise during regime shifts.
+
+---
+
 ## 🛠️ Installation & Usage
 
 ### 1. Clone & Install
