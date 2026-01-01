@@ -41,18 +41,24 @@ def main():
     print("==================================================")
     
     # 1. Data
-    # Note: The generation script handles caching. 
-    # For smoke test, we might want to ensure we don't download everything, 
-    # but our current script doesn't support a --limit flag easily without modifying it.
-    # We'll assume the standard generation is fast enough (cached) or we rely on pre-existing.
-    run_step("Data Validation", "python scripts/generation/generate_temporal_dataset.py")
+    data_cmd = "python scripts/generation/generate_temporal_dataset.py"
+    if args.smoke:
+        data_cmd += " --limit 10"
+        
+    run_step("Data Validation", data_cmd)
 
     # 2. Validation
     # Graveyard test is fast.
     run_step("Safety Validation (Graveyard)", "python scripts/validation/validate_tier2.py")
 
     # 3. Metrics & Charts
-    run_step("Statistical Metrics (Bootstrap)", "python scripts/analysis/generate_rigorous_metrics.py")
+    metrics_cmd = "python scripts/analysis/generate_rigorous_metrics.py"
+    if args.smoke:
+        metrics_cmd += " --smoke"
+        
+    run_step("Statistical Metrics (Bootstrap)", metrics_cmd)
+    
+    # Charts usually fine, but might look empty with 10 points. run anyway.
     run_step("Thesis Charts (Visuals)", "python scripts/generation/generate_thesis_charts.py")
     run_step("Model Comparison (Return Chart)", "python scripts/analysis/compare_models_returns.py")
 

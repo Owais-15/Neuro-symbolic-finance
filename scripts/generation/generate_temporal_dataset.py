@@ -108,7 +108,14 @@ def get_temporal_data(symbol, cutoff_date):
         return None, None
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--limit", type=int, help="Limit number of stocks (for Smoke Test)")
+    args = parser.parse_args()
+
     print(f"🚀 GENERATING TEMPORAL DATASET")
+    if args.limit:
+        print(f"⚠️ SMOKE MODE: Limiting to {args.limit} stocks")
     print(f"📅 Cutoff Date (Decision Time): {CUTOFF_DATE}")
     print(f"📅 Target Date (Outcome Time):  {TARGET_END_DATE}")
     print("="*60)
@@ -120,6 +127,10 @@ def main():
     except:
         print("Using limited ticker list for test...")
         tickers = ["AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "TSLA", "META", "AMD", "INTC", "IBM"]
+    
+    if args.limit:
+        tickers = tickers[:args.limit]
+
     
     dataset = []
     
