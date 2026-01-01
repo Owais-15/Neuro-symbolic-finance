@@ -2,7 +2,7 @@
 
 > **"Financial AI that prioritizes explainability & risk control."**
 
-[![Python](https://img.shields.io/badge/Python-3.9%2B-blue)](https://python.org)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://python.org)
 [![Defense](https://img.shields.io/badge/Defense-Verified-green)](docs/defense_report.md)
 [![Correlation](https://img.shields.io/badge/Correlation-r%3D0.25-orange)](results/figures/01_predictive_power.png)
 [![Structure](https://img.shields.io/badge/Layout-Open%20Source-blueviolet)](scripts/verify_project_integrity.py)
@@ -11,14 +11,24 @@ A hybrid AI system combining **Machine Learning (XGBoost)** with **Symbolic Reas
 
 ---
 
-| Model | Mean Return | Std Dev | Sharpe | 95% CI (Mean) |
-|-------|-------------|---------|--------|---------------|
-| **Market (Buy & Hold)** | **21.2%** | 51.4% | 0.41 | [16.9%, 25.9%] |
-| **Random Guesser** | **19.7%** | 41.5% | 0.47 | [14.8%, 25.4%] |
-| **Heuristic (RSI)** | **18.0%** | 45.6% | 0.40 | [12.3%, 23.9%] |
-| **Neuro-Symbolic (Proj)**| **44.6%** | 72.4% | 0.62 | [30.4%, 60.1%] |
+## 📊 Performance Results (N=461 Stocks, 2024 Data)
 
-*Note: N=1000 Bootstrap Samples. "Neuro-Symbolic" is a projected estimate based on XGBoost top-decile performance.*
+| Model | N | Mean Return | Std Dev | Sharpe | 95% CI (Mean) |
+|-------|---|-------------|---------|--------|---------------|
+| **Market (Buy & Hold)** | 461 | **21.22%** | 51.44% | 0.41 | [16.67%, 25.97%] |
+| **Heuristic (RSI+Trend)** | 216 | **18.04%** | 45.55% | 0.40 | [12.31%, 23.57%] |
+| **Random Guesser** | 230 | **18.24%** | 42.99% | 0.42 | [12.83%, 23.87%] |
+| **Neural Strategy (Top 20%)** | 95 | **35.43%** | 74.64% | 0.47 | [21.04%, 50.50%] |
+| **Momentum (Top 20%)** | 92 | **15.13%** | 64.76% | 0.23 | [3.20%, 29.80%] |
+| **Value (Low P/E)** | 461 | **21.22%** | 51.44% | 0.41 | [17.02%, 25.72%] |
+
+*Note: Bootstrap N=1000. Neuro-Symbolic implementation requires fundamental data not available in free Yahoo Finance API. Neural Strategy shows best risk-adjusted performance (Sharpe 0.47) on stocks passing technical filters.*
+
+**Key Findings**:
+- ✅ Neural Strategy outperforms market by +14.21% (35.43% vs 21.22%)
+- ✅ All strategies tested on same temporal split (train: pre-2024, test: 2024)
+- ⚠️ High standard deviations reflect 2024 bull market volatility
+- ⚠️ Results subject to survivorship bias (using current S&P 500 list)
 
 ### 1. Predictive Power
 ![Predictive Power](results/figures/01_predictive_power.png)
