@@ -172,8 +172,8 @@ def chart_5_alpha_generation():
     """Honest Alpha Generation"""
     print("[5/5] Generating Alpha Chart...")
     
-    # Market return based on 2024 (approx 20%)
-    market_return = 20.0
+    # Market return based on 2024 (approx 24.5% - S&P 500)
+    market_return = 24.5
     system_return = 33.5 # From 0.88 Sharpe / reasonable estimate for r=0.25 system
     
     alpha = system_return - market_return
