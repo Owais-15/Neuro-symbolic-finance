@@ -32,6 +32,8 @@ jobs:
         
     - name: Integration Smoke Test
       run: |
+        # Ensure we can import from src
+        export PYTHONPATH=$PYTHONPATH:.
         # Run the reproduction script (it handles data checking)
         # We might need to handle the lack of API keys for LLM parts, 
         # but the core pipeline (Data->XGBoost) should work without keys.
