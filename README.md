@@ -52,12 +52,22 @@ Our rigorous analysis shows high standard deviation (72%). Why?
 
 ### 1. Clone & Install
 ```bash
-git clone https://github.com/yourusername/neuro-symbolic-finance
-cd neuro-symbolic-finance
+git clone https://github.com/Owais-15/Neuro-symbolic-finance.git
+cd Neuro-symbolic-finance
 pip install -r requirements.txt
 ```
 
-### 2. Reproduction Guide (Manual verification)
+### 2. Reproduction
+We provide a single entry point to reproduce the full experiment:
+
+```bash
+# Runs Data Generation -> Validation -> Charts
+python scripts/run_repro.py
+```
+
+*Or run individual steps guided by the manual below.*
+
+**Manual Verification:**
 Follow these steps to reproduce our results from scratch, similar to verifying a scientific paper.
 
 **Step A: Generate the Dataset**
@@ -134,6 +144,7 @@ To ensure rigorous transparency, we disclose the following limitations:
 2.  **Transaction Costs**: Returns reported are gross returns. Real-world implementation must account for spread, slippage, and fees.
 3.  **Universe Bias**: Tested primarily on S&P 500. Small-cap liquidity risks are not modeled.
 4.  **Inference Latency**: The Symbolic+LLM pipeline introduces ~2s latency per stock.
+5.  **LLM Usage**: The system uses **Llama 3 (via Groq API)** for qualitative explanations. This requires an API key and internet access. The quantitative signal is XGBoost-driven and runs locally.
 
 ---
 
@@ -141,5 +152,6 @@ To ensure rigorous transparency, we disclose the following limitations:
 
 **MIT License** - Free for research and commercial use.
 
-**Author**: Admin
+**Author**: Sayed Mohammad Owais Hussain
+**Affiliation**: B.Tech IT, Thakur College of Engineering & Technology
 **Thesis**: "Neuro-Symbolic AI for Financial Time-Series Prediction"

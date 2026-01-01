@@ -181,6 +181,24 @@ def run_analysis():
             
             f.write(f"| {res['Model']} | {n} | {mean_ret:.2f}% | {std_ret:.2f}% | {sharpe:.2f} | [{ci_low:.2f}%, {ci_high:.2f}%] |\n")
             
+    # Save as CSV for transparency
+    csv_output = OUTPUT_FILE.replace(".md", ".csv")
+    csv_data = []
+    for res in results:
+        rets = np.array(res['Returns'])
+        ci_low, ci_high = bootstrap_metric(rets, np.mean)
+        csv_data.append({
+            "Model": res['Model'],
+            "N": len(rets),
+            "Mean_Return": f"{np.mean(rets):.2f}%",
+            "Std_Dev": f"{np.std(rets):.2f}%",
+            "Sharpe": f"{calc_sharpe(rets):.2f}",
+            "CI_Lower": f"{ci_low:.2f}%",
+            "CI_Upper": f"{ci_high:.2f}%"
+        })
+    pd.DataFrame(csv_data).to_csv(csv_output, index=False)
+    print(f"✅ CSV Saved: {csv_output}")
+            
     print(f"✅ Table Saved: {OUTPUT_FILE}")
     print(open(OUTPUT_FILE).read())
 
