@@ -32,7 +32,7 @@ python -m streamlit run "C:\Users\Admin\OneDrive\Documents\Neuro_Symbolic_Thesis
 - 🎨 Beautiful purple gradient header
 - 📊 "Neuro-Symbolic Stock Predictor"
 - ⚙️ Sidebar with 4 modes
-- 📈 System stats (r=0.62, Sharpe 0.88)
+- 📈 System stats (r=0.25, Sharpe 0.88)
 
 ### **4 Modes Available**
 
@@ -73,7 +73,7 @@ python -m streamlit run "C:\Users\Admin\OneDrive\Documents\Neuro_Symbolic_Thesis
 ✅ **Modern Design**: Purple gradient, clean layout
 ✅ **Fast**: <3 seconds for any analysis
 ✅ **Explainable**: Every decision is transparent
-✅ **Accurate**: r=0.62 validated performance
+✅ **Accurate**: r=0.25 validated performance (strict temporal)
 ✅ **Easy**: No learning curve, intuitive
 
 ---
@@ -137,7 +137,7 @@ ROE: 147.4%                 Trend Strength: 0.73
 2. "Here are today's top 10 picks" [Show Top Picks]
 3. "I can analyze any stock instantly" [Type AAPL, click Analyze]
 4. "Every decision is 100% explainable" [Show rule breakdown]
-5. "Validated r=0.62 correlation" [Point to metrics]
+5. "Validated r=0.25 correlation (p<1e-7)" [Point to metrics]
 
 **Impact**: ⭐⭐⭐⭐⭐
 

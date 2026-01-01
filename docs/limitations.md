@@ -284,7 +284,7 @@ This limitation is **openly acknowledged** rather than hidden. The adjusted corr
 - **Impact**: Model may need retraining
 
 **Mitigation**:
-- Walk-forward validation (r=0.62 out-of-sample)
+- Strict temporal validation (r=0.25 out-of-sample, honest)
 - Conservative hyperparameters (max_depth=3)
 - Feature selection (10 of 35 features)
 
@@ -327,7 +327,7 @@ This limitation is **openly acknowledged** rather than hidden. The adjusted corr
 ### Performance Adjustments
 
 **Reported Results:**
-- Correlation: r=0.62 (out-of-sample)
+- Correlation: r=0.25 (strict temporal validation)
 - Sharpe Ratio: 0.88
 - Alpha: +180%
 
@@ -352,13 +352,13 @@ A comprehensive audit of the data pipeline confirmed:
 - ✅ Technical indicators use only past data
 - ✅ No global normalization using future statistics
 
-**Conclusion**: The r=0.62 correlation is **legitimate**, not from data leakage.
+**Conclusion**: After fixing hindsight bias, the r=0.25 correlation is **legitimate** and statistically significant.
 
 **Detailed Report**: See `docs/data_leakage_audit.md`
 
 ---
 
-## 🔬 Why is r=0.62 High (But Valid)?
+## 🔬 Why Did We Initially Get r=0.62?
 
 The high correlation is explained by:
 
@@ -391,7 +391,7 @@ Base IC (random features): ~0.02
 + Survivorship bias: +0.08
 = Observed r: ~0.40-0.60
 
-Actual r=0.62 is within expected range!
+This explained the inflated r=0.62. After fixing: r=0.25 (realistic)!
 ```
 
 ---

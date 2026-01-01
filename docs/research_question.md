@@ -146,7 +146,7 @@ The research is successful if:
 1. **First neuro-symbolic system** for financial forecasting with:
    - Symbolic rules + ML + LLM integration
    - 100% explainability guarantee
-   - Competitive performance (r=0.62)
+   - Competitive performance (r=0.25, statistically significant)
 
 2. **Rigorous validation** on large dataset:
    - N=564 stocks (2.8x larger than typical studies)
