@@ -13,3 +13,6 @@ lxml
 matplotlib
 seaborn
 python-dotenv
+
+plotly
+streamlit
