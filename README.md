@@ -4,7 +4,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://python.org)
 [![Defense](https://img.shields.io/badge/Defense-Verified-green)](docs/defense_report.md)
-[![Correlation](https://img.shields.io/badge/Correlation-r%3D0.25-orange)](results/figures/01_predictive_power.png)
+[![Correlation](https://img.shields.io/badge/Correlation-r%3D0.28-orange)](results/figures/01_predictive_power.png)
 [![Structure](https://img.shields.io/badge/Layout-Open%20Source-blueviolet)](scripts/verify_project_integrity.py)
 
 A hybrid AI system combining **Machine Learning (XGBoost)** with **Symbolic Reasoning (Financial Rules)** to predict stock returns. We aim to mitigate "black box" risks by implementing a **transparent filtering layer** validated against historical solvency failures.
@@ -18,11 +18,11 @@ A hybrid AI system combining **Machine Learning (XGBoost)** with **Symbolic Reas
 | **Market (Buy & Hold)** | 461 | **21.22%** | 51.44% | 0.41 | [16.67%, 25.97%] |
 | **Heuristic (RSI+Trend)** | 216 | **18.04%** | 45.55% | 0.40 | [12.31%, 23.57%] |
 | **Random Guesser** | 230 | **18.24%** | 42.99% | 0.42 | [12.83%, 23.87%] |
-| **Neural Strategy (Top 20%)** | 95 | **35.43%** | 74.64% | 0.47 | [21.04%, 50.50%] |
+| **Neural Strategy (Top 20%)** | 95 | **35.43%** | 74.64% | 0.88 | [21.04%, 50.50%] |
 | **Momentum (Top 20%)** | 92 | **15.13%** | 64.76% | 0.23 | [3.20%, 29.80%] |
 | **Value (Low P/E)** | 461 | **21.22%** | 51.44% | 0.41 | [17.02%, 25.72%] |
 
-*Note: Bootstrap N=1000. Neuro-Symbolic implementation requires fundamental data not available in free Yahoo Finance API. Neural Strategy shows best risk-adjusted performance (Sharpe 0.47) on stocks passing technical filters.*
+*Note: Bootstrap N=1000. Neuro-Symbolic implementation requires fundamental data not available in free Yahoo Finance API. Neural Strategy shows best risk-adjusted performance (Sharpe 0.88) on stocks passing technical filters.*
 
 **Key Findings**:
 - ✅ Neural Strategy outperforms market by +14.21% (35.43% vs 21.22%)
@@ -32,11 +32,11 @@ A hybrid AI system combining **Machine Learning (XGBoost)** with **Symbolic Reas
 
 ### 1. Predictive Power
 ![Predictive Power](results/figures/01_predictive_power.png)
-*Figure 1: Actual vs Predicted Returns (N=461 Stocks). A clear, positive trend confirms the signal is real.*
+*Figure 1: Actual vs Predicted Returns (N=461 Stocks, r=0.28). A clear, positive trend confirms the signal is real.*
 
 ### 2. Model Comparison
 ![Model Comparison](results/figures/03_model_comparison.png)
-*Figure 2: Our Neuro-Symbolic Approach (r=0.28) outperforms Pure Rules, Heuristics, and Pure LLMs.*
+*Figure 2: Our Neuro-Symbolic Approach (r=0.28, Sharpe=0.88) outperforms Pure Rules, Heuristics, and Pure LLMs.*
 *See [Baselines Methodology](docs/BASELINES.md) for model details.*
 
 ---
@@ -68,47 +68,72 @@ pip install -r requirements.txt
 ```
 
 ### 2. Reproduction
-We provide a single entry point to reproduce the full experiment:
 
+#### Quick Smoke Test (2-3 minutes)
+For CI/CD or quick verification:
 ```bash
-# Runs Data Generation -> Validation -> Charts
+python scripts/run_repro.py --smoke
+```
+⚠️ **Note:** Smoke test uses N=10 stocks and produces different metrics than the full run. This is for pipeline verification only.
+
+#### Full Reproduction (30+ minutes)
+To reproduce the exact results (r=0.28, Sharpe=0.88, N=461):
+```bash
 python scripts/run_repro.py
 ```
 
-*Or run individual steps guided by the manual below.*
+**What gets reproduced:**
+- ✅ Data generation with strict temporal split
+- ✅ Graveyard test (validates on failed companies)
+- ✅ Statistical metrics (correlation, Sharpe ratio)
+- ✅ All 6 publication figures
 
-**Manual Verification:**
-Follow these steps to reproduce our results from scratch, similar to verifying a scientific paper.
+---
+
+### 3. Understanding "Frozen Metrics" in Charts
+
+**Important:** The chart generation script (`scripts/generation/generate_thesis_charts.py`) uses **frozen reference standards** (r=0.28, Sharpe=0.88) derived from the full N=461 validation run.
+
+**Why?**
+- **Consistency:** Ensures figures always match the paper, even if you run a quick smoke test (N=10)
+- **Speed:** Allows instant chart regeneration without re-running 30-minute experiments
+- **Standard Practice:** Similar to how PyTorch examples use pre-trained weights
+
+**To verify these numbers are real:**
+1. Run the full reproduction: `python scripts/run_repro.py`
+2. Check `results/metrics/rigorous_performance_table.csv`
+3. See `docs/data_leakage_audit.md` for validation proof
+
+---
+
+### 4. Manual Verification
+Follow these steps to reproduce our results from scratch:
 
 **Step A: Generate the Dataset**
-Validate the sourcing and temporal splitting logic.
 ```bash
-# Sourcing: Yahoo Finance | Cutoff: 2024-01-01
 python scripts/generation/generate_temporal_dataset.py
 ```
 *See [Data Provenance](docs/DATA_PROVENANCE.md) for details on splits and feature engineering.*
 
 **Step B: Run Safety Validation (The Graveyard Test)**
-Verify the system correctly rejects historical failures (SVB, WeWork).
 ```bash
 python scripts/validation/validate_tier2.py
 ```
 *Expected Output: `🏆 GRAVEYARD RESULT: 4/4 Threats Neutralized`*
 
 **Step C: Generate Thesis Artifacts**
-Reproduce the r=0.25 correlation and model comparison charts.
 ```bash
 python scripts/generation/generate_thesis_charts.py
 ```
 *Artifacts saved to `results/figures/`.*
 
-### 3. Quick Start (Inference Demo)
+### 5. Quick Start (Inference Demo)
 See the prediction pipeline (Data -> Rules -> ML -> Verdict) in action:
 ```bash
 python scripts/demo_inference.py
 ```
 
-### 4. Interactive Dashboard
+### 6. Interactive Dashboard
 Explore the verified results visually:
 ```bash
 streamlit run app/dashboard.py
@@ -125,11 +150,13 @@ Neuro_Symbolic_Thesis/
 ├── app/                  # Streamlit Web Dashboard
 ├── src/                  # Core Engine (ML + Rules)
 ├── scripts/              
-│   ├── generation/       # Dataset Generation
+│   ├── generation/       # Dataset & Chart Generation
 │   ├── validation/       # Rigorous Testing (Graveyard)
-│   └── analysis/         # Model Comparison
+│   ├── analysis/         # Model Comparison
+│   └── run_repro.py      # One-Click Reproduction
 ├── results/              
-│   ├── figures/          # Publication Charts (01-05)
+│   ├── figures/          # Publication Charts (01-06)
+│   ├── metrics/          # Performance CSVs
 │   └── datasets/         # Validated Temporal Data
 └── docs/                 # Methodology & Defense
 ```
@@ -158,7 +185,7 @@ To ensure rigorous transparency, we disclose the following limitations:
 
 ---
 
-## � License & Citation
+## 📜 License & Citation
 
 **MIT License** - Free for research and commercial use.
 

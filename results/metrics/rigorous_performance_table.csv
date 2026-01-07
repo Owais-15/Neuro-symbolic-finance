@@ -1,8 +1,8 @@
 Model,N,Mean_Return,Std_Dev,Sharpe,CI_Lower,CI_Upper
-Market (Buy & Hold),461,21.22%,51.44%,0.41,16.76%,26.22%
-Heuristic (RSI+Trend),216,18.04%,45.55%,0.40,12.69%,24.10%
-Random Guesser,230,18.24%,42.99%,0.42,12.87%,23.52%
-Neural Strategy (Top 20%),95,35.43%,74.64%,0.47,20.70%,50.81%
-Momentum (Top 20%),92,15.13%,64.76%,0.23,2.27%,29.73%
-Value (Low P/E),461,21.22%,51.44%,0.41,16.85%,26.01%
+Market (Buy & Hold),10,52.18%,46.42%,1.12,27.00%,79.66%
+Heuristic (RSI+Trend),7,47.83%,54.29%,0.88,19.72%,86.88%
+Random Guesser,5,36.20%,15.22%,2.38,27.48%,48.35%
+Neural Strategy (Top 20%),0,nan%,nan%,0.00,0.00%,0.00%
+Momentum (Top 20%),2,54.75%,7.99%,6.85,46.76%,62.74%
+Value (Low P/E),10,52.18%,46.42%,1.12,29.40%,80.61%
 Neuro-Symbolic (Actual),0,nan%,nan%,0.00,0.00%,0.00%

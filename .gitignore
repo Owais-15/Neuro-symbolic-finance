@@ -44,5 +44,10 @@ Thumbs.db
 !results/metrics/*.csv
 !results/charts/*.png
 
+# Prevent duplicate/outdated scripts (cleaned up on 2026-01-07)
+scripts/generate_charts.py
+scripts/regenerate_all_charts.py
+scripts/generate_dataset.py
+
 # Git
 .git/

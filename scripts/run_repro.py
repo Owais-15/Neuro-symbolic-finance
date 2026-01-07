@@ -24,8 +24,17 @@ def run_step(desc, cmd):
     print(f"\n🚀 [STEP] {desc}")
     print(f"   Command: {cmd}")
     start = time.time()
+    
+    # Ensure current directory is in PYTHONPATH
+    env = os.environ.copy()
+    cwd = os.getcwd()
+    if "PYTHONPATH" in env:
+        env["PYTHONPATH"] = cwd + os.pathsep + env["PYTHONPATH"]
+    else:
+        env["PYTHONPATH"] = cwd
+        
     try:
-        subprocess.run(cmd, shell=True, check=True)
+        subprocess.run(cmd, shell=True, check=True, env=env)
         print(f"✅ PASS ({time.time() - start:.2f}s)")
     except subprocess.CalledProcessError:
         print(f"❌ FAIL: {desc}")
