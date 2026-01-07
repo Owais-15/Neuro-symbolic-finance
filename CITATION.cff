@@ -3,9 +3,9 @@ message: "If you use this software, please cite it as below."
 type: software
 title: "Neuro-Symbolic Stock Predictor: A Reproducible, Zero-Cost Approach to Financial Forecasting"
 authors:
-  - family-names: "Your Last Name"
-    given-names: "Your First Name"
-    orcid: "https://orcid.org/0000-0000-0000-0000"  # Replace with your ORCID if you have one
+  - family-names: "Sayed"
+    given-names: "Mohammad Owais Hussain"
+    orcid: "https://orcid.org/0009-0006-7555-9046"  
 repository-code: "https://github.com/Owais-15/Neuro-symbolic-finance"
 url: "https://github.com/Owais-15/Neuro-symbolic-finance"
 abstract: "A hybrid AI system combining Machine Learning (XGBoost) with Symbolic Reasoning (Financial Rules) to predict stock returns. This project demonstrates that sophisticated, interpretable financial modeling is achievable using exclusively free, public resources."
