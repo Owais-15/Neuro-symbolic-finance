@@ -193,7 +193,9 @@ To ensure rigorous transparency, we disclose the following limitations:
 **Affiliation**: B.Tech IT, Thakur College of Engineering & Technology
 **Thesis**: "Neuro-Symbolic AI for Financial Time-Series Prediction"
 
-### 📄 Published Paper
+---
+
+## 📄 Published Paper
 
 | Field | Details |
 |---|---|
