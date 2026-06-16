@@ -192,3 +192,25 @@ To ensure rigorous transparency, we disclose the following limitations:
 **Author**: Sayed Mohammad Owais Hussain
 **Affiliation**: B.Tech IT, Thakur College of Engineering & Technology
 **Thesis**: "Neuro-Symbolic AI for Financial Time-Series Prediction"
+
+### 📄 Published Paper
+| Field | Details |
+|-------|---------|
+| **Paper ID** | IJERTV15IS041058 |
+| **Volume & Issue** | Volume 15, Issue 04 — April 2026 |
+| **DOI** | [10.5281/zenodo.19608074](https://doi.org/10.5281/zenodo.19608074) |
+**BibTeX Citation:**
+```bibtex
+@article{hussain2026neurosymbolic,
+  author    = {Sayed , Mohammad Owais Hussain},
+  title     = {Neuro-Symbolic AI for Financial Time-Series Prediction},
+  journal   = {International Journal of Engineering Research \& Technology (IJERT)},
+  volume    = {15},
+  number    = {04},
+  month     = {April},
+  year      = {2026},
+  paperId   = {IJERTV15IS041058},
+  doi       = {10.5281/zenodo.19608074},
+  url       = {https://doi.org/10.5281/zenodo.19608074}
+}
+```
